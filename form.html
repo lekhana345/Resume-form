@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modern Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #3dc8ff, #33e5b4);
+            min-height: 100vh;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-container {
+            background: white;
+            width: 350px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            animation: fadeIn 0.8s ease;
+            margin-bottom: 20px;
+        }
+
+        .result-box {
+            background: white;
+            width: 350px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: none;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            color: #0d6efd;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px;
+            border: none;
+            border-bottom: 2px solid #00b5e2;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 5px;
+            top: 12px;
+            cursor: pointer;
+            font-size: 14px;
+            user-select: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            background: linear-gradient(135deg, #0dcaf0, #0dca78);
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .checkbox label {
+            margin-left: 6px;
+            font-size: 14px;
+        }
+
+        .signin {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .signin a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .signin a:hover {
+            text-decoration: underline;
+        }
+
+        .result-box p {
+            font-size: 15px;
+            margin: 6px 0;
+        }
+
+        .title {
+            font-weight: bold;
+            color: #0d6efd;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h2>Registration Form</h2>
+
+    <input type="text" placeholder="Name" id="name">
+    <input type="email" placeholder="Email Address" id="email">
+    <input type="text" placeholder="Country" id="country">
+    <input type="text" placeholder="Phone" id="phone">
+
+    <div class="password-wrapper">
+        <input type="password" placeholder="Password" id="password">
+        <span class="eye-icon" onclick="showPassword()">👁</span>
+    </div>
+
+    <div class="checkbox">
+        <input type="checkbox" id="terms">
+        <label for="terms">I accept terms & conditions</label>
+    </div>
+
+    <button onclick="submitForm()">Create Account</button>
+
+    <div class="signin">
+        Already have an account? <a href="#">Sign In</a>
+    </div>
+</div>
+
+<!-- RESULT BOX (Hidden until button click) -->
+<div class="result-box" id="resultBox">
+    <h2>Submitted Information</h2>
+    <p><span class="title">Name:</span> <span id="r_name"></span></p>
+    <p><span class="title">Email:</span> <span id="r_email"></span></p>
+    <p><span class="title">Country:</span> <span id="r_country"></span></p>
+    <p><span class="title">Phone:</span> <span id="r_phone"></span></p>
+    <p><span class="title">Password:</span> <span id="r_password"></span></p>
+    <p><span class="title">Terms Accepted:</span> <span id="r_terms"></span></p>
+</div>
+
+
+<script>
+    function showPassword() {
+        var pass = document.getElementById("password");
+        pass.type = (pass.type === "password") ? "text" : "password";
+    }
+
+    function submitForm() {
+        // Get values
+        var name = document.getElementById("name").value;
+        var email = document.getElementById("email").value;
+        var country = document.getElementById("country").value;
+        var phone = document.getElementById("phone").value;
+        var password = document.getElementById("password").value;
+        var terms = document.getElementById("terms").checked ? "Yes" : "No";
+
+        // Fill result box
+        document.getElementById("r_name").innerText = name;
+        document.getElementById("r_email").innerText = email;
+        document.getElementById("r_country").innerText = country;
+        document.getElementById("r_phone").innerText = phone;
+        document.getElementById("r_password").innerText = password;
+        document.getElementById("r_terms").innerText = terms;
+
+        // Show result box
+        document.getElementById("resultBox").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
